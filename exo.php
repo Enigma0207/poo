@@ -1,56 +1,85 @@
+<!-- avec lethode de abraham exo1 -->
+
 <?php
-abstract class FormeGeometrique {
+/**
+ * creer une classe abstraite FormeGeometrique
+ * avec les attribut suivants:
+ * 1) Surface
+ * 2) perimetre
+ * 
+ * creer la classe Rectangle fille de FormeGeometrique avec les attributs suivant:
+ * 1) longueur
+ * 2) largeur
+ * et les methodes calculerSurface et calculerPerimetre
+ * 
+ * creer la classe Cercle fille de FormeGeometrique avec les proprietes suivantes:
+ * 1) rayon
+ * et les methodes calculerSurface et calculerPerimetre
+*/
+
+abstract class FormeGeometrique{
     protected $surface;
     protected $perimetre;
 
-    public abstract function calculerSurface();
-    public abstract function calculerPerimetre();
+    public function __construct($surface, $perimetre){
+        $this->surface = $surface;
+        $this->perimetre  = $perimetre;
+    }
 }
 
-class Rectangle extends FormeGeometrique {
-    protected $longueur;
-    protected $largeur;
 
-    public function __construct($longueur, $largeur) {
+// classe rectangle 
+class Rectangle extends FormeGeometrique{
+    private $longueur;
+    private $largeur;
+
+    public function __construct($surface, $perimetre, $longueur, $largeur){
+        // $this->surface = $surface;
+        // $this->perimetre  = $perimetre;
+        parent::__construct($surface, $perimetre);
         $this->longueur = $longueur;
         $this->largeur = $largeur;
     }
 
-    public function calculerSurface() {
-        $this->surface = $this->longueur * $this->largeur;
+
+    // methode claculerSurface
+    public function calculerSurface(){
+       $this->surface = $this->longueur * $this->largeur;
         return $this->surface;
     }
 
-    public function calculerPerimetre() {
-        $this->perimetre = 2 * ($this->longueur + $this->largeur);
+    // methode claculerPerimetre
+    public function calculerPerimetre(){
+        $this->perimetre = ($this->longueur + $this->largeur) * 2;
         return $this->perimetre;
     }
 }
 
-class Cercle extends FormeGeometrique {
-    protected $rayon;
+// classe Cercle
+class Cercle extends FormeGeometrique{
+    private $rayon;
 
-    public function __construct($rayon) {
+    public function __construct($surface, $perimetre, $rayon){
+        parent::__construct($surface, $perimetre);
         $this->rayon = $rayon;
     }
 
-    public function calculerSurface() {
+    // methode claculerSurface
+    public function calculerSurface(){
         $this->surface = M_PI * pow($this->rayon, 2);
         return $this->surface;
-    }
-
-    public function calculerPerimetre() {
+     }
+ 
+     // methode calculerPerimetre
+     public function calculerPerimetre(){
         $this->perimetre = 2 * M_PI * $this->rayon;
         return $this->perimetre;
-    }
+     }
 }
 
-// Exemple d'utilisation
-$rectangle = new Rectangle(5, 10);
-echo "Rectangle - Surface : " . $rectangle->calculerSurface() . "\n";
-echo "Rectangle - Périmètre : " . $rectangle->calculerPerimetre() . "\n";
+// creer un rectangle avec une longueur de 10 et une largeur de 4 perimetre et surface 0
+$rectangle  = new Rectangle(0,0, 10, 4);
+echo "le perimetre du rectangle est : ".$rectangle->calculerPerimetre();
 
-$cercle = new Cercle(3);
-echo "Cercle - Surface : " . $cercle->calculerSurface() . "\n";
-echo "Cercle - Périmètre : " . $cercle->calculerPerimetre() . "\n";
-?>
+
+// exercice 2.

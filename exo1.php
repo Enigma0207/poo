@@ -1,4 +1,20 @@
 <?php
+
+/**
+ * creer une classe abstraite FormeGeometrique
+ * avec les attribut suivants:
+ * 1) Surface
+ * 2) perimetre
+ * 
+ * creer la classe Rectangle fille de FormeGeometrique avec les attributs suivant:
+ * 1) longueur
+ * 2) largeur
+ * et les methodes calculerSurface et calculerPerimetre
+ * 
+ * creer la classe Cercle fille de FormeGeometrique avec les proprietes suivantes:
+ * 1) rayon
+ * et les methodes calculerSurface et calculerPerimetre
+ */
 // classe abstract
 abstract class FormeGeometrique {
     // deux paramettre
@@ -16,17 +32,18 @@ abstract class FormeGeometrique {
 
 }
 
-// classe fille de FormeGeometrique
+// classe rectangle, fille de class mere FormeGeometrique
 class Rectangle extends FormeGeometrique {
-    // proprieté a lui seul
-        protected $longueur;
-        protected $largeur;
+    // proprieté a lui seul,on met en private pck ils n'on auraont pas d'enfant
+        private $longueur;
+        private $largeur;
     public function __construct($long, $larg){
        
         $this->longueur = $long;
         $this->largeur = $larg;
 
   }
+//   ou
 
 
 //    les methodes calculerSurface et calculerPerimetre
@@ -53,10 +70,10 @@ public function calculerSurface() {
 
 // ..........
 
-// classe fille de FormeGeometrique
+// classe Cercle fille de FormeGeometrique
 class Cercle extends FormeGeometrique {
     // proprieté a lui seul
-        protected $rayon;
+        private $rayon;
     public function __construct($rayon){
         $this->rayon = $rayon;
 
